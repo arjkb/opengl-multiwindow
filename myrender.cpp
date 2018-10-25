@@ -30,8 +30,15 @@ int main(int argc, char *argv[]) {
     
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    
+    glutInitWindowPosition(50, 50);
     glutCreateWindow("window 1");
     glutDisplayFunc(display);
+
+    glutInitWindowPosition(500, 50);
+    glutCreateWindow("window 2");
+    glutDisplayFunc(display);
+
     glutMainLoop();
 
     return 0;
