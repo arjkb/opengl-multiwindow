@@ -19,6 +19,7 @@ void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
 
 void display(void)  {
     const GLfloat RED[] = {1.0, 0.0, 0.0};
+    const GLfloat BLUE[] = {0.0, 0.0, 1.0};
     
     printf(" current window = %d\n", glutGetWindow());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -27,9 +28,9 @@ void display(void)  {
     if(glutGetWindow() == win1) {
         drawSquare(0.5, RED);
     } else if(glutGetWindow() == win2)  {
-        drawSquare(0.5, RED);
+        drawSquare(0.5, BLUE);
     }
-    
+
     glFlush();
     glutSwapBuffers();
 }
