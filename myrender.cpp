@@ -5,6 +5,8 @@
 
 using namespace std;
 
+GLint win1, win2;
+
 void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
     glBegin(GL_POLYGON);
         glColor3fv(COLOR);
@@ -32,12 +34,14 @@ int main(int argc, char *argv[]) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     
     glutInitWindowPosition(50, 50);
-    glutCreateWindow("window 1");
+    win1 = glutCreateWindow("window 1");
     glutDisplayFunc(display);
 
     glutInitWindowPosition(500, 50);
-    glutCreateWindow("window 2");
+    win2 = glutCreateWindow("window 2");
     glutDisplayFunc(display);
+
+    printf(" win1 = %d, win2 = %d\n", win1, win2);
 
     glutMainLoop();
 
