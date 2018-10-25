@@ -5,20 +5,22 @@
 
 using namespace std;
 
+void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
+    glBegin(GL_POLYGON);
+        glColor3fv(COLOR);
+        glVertex3f(-SIDE,SIDE,0);
+        glVertex3f(-SIDE,-SIDE,0);
+        glVertex3f(SIDE,-SIDE,0);
+        glVertex3f(SIDE,SIDE,0);
+    glEnd();
+}
+
 void display(void)  {
     const GLfloat RED[] = {1.0, 0.0, 0.0};
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-    glBegin(GL_POLYGON);
-    glColor3fv(RED);
-    glVertex3f(-0.5,0.5,0);
-    glVertex3f(-0.5,-0.5,0);
-    glVertex3f(0.5,-0.5,0);
-    glVertex3f(0.5,0.5,0);
-    glEnd();
-
+    drawSquare(0.5, RED);
     glFlush();
     glutSwapBuffers();
 }
