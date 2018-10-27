@@ -38,10 +38,10 @@ void display(void)  {
     glLoadIdentity();
 
     if(glutGetWindow() == win1) {
-        glColor3fv(COLOR_RED);
+        // glColor3fv(COLOR_RED);
         drawSquare(0.5);
     } else if(glutGetWindow() == win2)  {
-        glColor3fv(COLOR_BLUE);
+        // glColor3fv(COLOR_BLUE);
         drawSquare(0.5);
     }
 
@@ -64,6 +64,8 @@ int main(int argc, char *argv[]) {
     glutDisplayFunc(display);
 
     glutKeyboardFunc(keyboard);
+
+    // glColor3fv(COLOR_RED);
 
     printf(" win1 = %d, win2 = %d\n", win1, win2);
 
