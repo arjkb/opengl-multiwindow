@@ -11,7 +11,6 @@ const GLfloat COLOR_RED[] = {1.0, 0.0, 0.0};
 const GLfloat COLOR_GREEN[] = {0.0, 1.0, 0.0};
 const GLfloat COLOR_BLUE[] = {0.0, 0.0, 1.0};
 
-
 class Window
 {
     private:
@@ -72,11 +71,12 @@ void display(void)  {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    if(glutGetWindow() == win1) {
+    if(glutGetWindow() == window1.getID()) {
         // glColor3fv(COLOR_RED);
+        glColor3fv(window1.getColor());
         drawSquare(0.5);
-    } else if(glutGetWindow() == win2)  {
-        // glColor3fv(COLOR_BLUE);
+    } else if(glutGetWindow() == window2.getID())  {
+        glColor3fv(window2.getColor());
         drawSquare(0.5);
     }
 
