@@ -7,18 +7,17 @@ using namespace std;
 
 GLint win1, win2;
 
-void keyboard(unsigned char key, int x, int y)  {
-    const GLfloat RED[] = {1.0, 0.0, 0.0};
-    const GLfloat GREEN[] = {0.0, 1.0, 0.0};
-    const GLfloat BLUE[] = {0.0, 0.0, 1.0};
+const GLfloat COLOR_RED[] = {1.0, 0.0, 0.0};
+const GLfloat COLOR_GREEN[] = {0.0, 1.0, 0.0};
+const GLfloat COLOR_BLUE[] = {0.0, 0.0, 1.0};
 
+void keyboard(unsigned char key, int x, int y)  {
     printf("pressed key '%c'\n", key);
-    
     switch (key)
     {
         case 'x':
         case 'X':   printf("at %c\n", key);
-                    glColor3fv(GREEN); break;
+                    glColor3fv(COLOR_GREEN); break;
         default:    break;
     }
     glutPostRedisplay();
@@ -34,18 +33,15 @@ void drawSquare(const GLfloat SIDE)    {
 }
 
 void display(void)  {
-    const GLfloat RED[] = {1.0, 0.0, 0.0};
-    const GLfloat BLUE[] = {0.0, 0.0, 1.0};
-    
     printf(" current window = %d\n", glutGetWindow());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
     if(glutGetWindow() == win1) {
-        glColor3fv(RED);
+        glColor3fv(COLOR_RED);
         drawSquare(0.5);
     } else if(glutGetWindow() == win2)  {
-        glColor3fv(BLUE);
+        glColor3fv(COLOR_BLUE);
         drawSquare(0.5);
     }
 
