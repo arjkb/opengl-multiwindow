@@ -24,9 +24,8 @@ void keyboard(unsigned char key, int x, int y)  {
     glutPostRedisplay();
 }
 
-void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
+void drawSquare(const GLfloat SIDE)    {
     glBegin(GL_POLYGON);
-        glColor3fv(COLOR);
         glVertex3f(-SIDE,SIDE,0);
         glVertex3f(-SIDE,-SIDE,0);
         glVertex3f(SIDE,-SIDE,0);
@@ -43,9 +42,11 @@ void display(void)  {
     glLoadIdentity();
 
     if(glutGetWindow() == win1) {
-        drawSquare(0.5, RED);
+        glColor3fv(RED);
+        drawSquare(0.5);
     } else if(glutGetWindow() == win2)  {
-        drawSquare(0.5, BLUE);
+        glColor3fv(BLUE);
+        drawSquare(0.5);
     }
 
     glFlush();
