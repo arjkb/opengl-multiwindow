@@ -98,6 +98,12 @@ int main(int argc, char *argv[]) {
     win2 = glutCreateWindow("window 2");
     glutDisplayFunc(display);
 
+    window1.setID(win1);
+    window2.setID(win2);
+
+    window1.setColor(RED);
+    window2.setColor(GREEN);
+
     glutKeyboardFunc(keyboard);
 
     // glColor3fv(COLOR_RED);
