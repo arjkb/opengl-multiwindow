@@ -7,6 +7,23 @@ using namespace std;
 
 GLint win1, win2;
 
+void keyboard(unsigned char key, int x, int y)  {
+    const GLfloat RED[] = {1.0, 0.0, 0.0};
+    const GLfloat GREEN[] = {0.0, 1.0, 0.0};
+    const GLfloat BLUE[] = {0.0, 0.0, 1.0};
+
+    printf("pressed key '%c'\n", key);
+    
+    switch (key)
+    {
+        case 'x':
+        case 'X':   printf("at %c\n", key);
+                    glColor3fv(GREEN); break;
+        default:    break;
+    }
+    glutPostRedisplay();
+}
+
 void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
     glBegin(GL_POLYGON);
         glColor3fv(COLOR);
@@ -48,6 +65,8 @@ int main(int argc, char *argv[]) {
     glutInitWindowPosition(500, 50);
     win2 = glutCreateWindow("window 2");
     glutDisplayFunc(display);
+
+    glutKeyboardFunc(keyboard);
 
     printf(" win1 = %d, win2 = %d\n", win1, win2);
 
