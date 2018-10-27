@@ -11,6 +11,41 @@ const GLfloat COLOR_RED[] = {1.0, 0.0, 0.0};
 const GLfloat COLOR_GREEN[] = {0.0, 1.0, 0.0};
 const GLfloat COLOR_BLUE[] = {0.0, 0.0, 1.0};
 
+
+class Window
+{
+    private:
+        GLfloat *color;
+        int id;
+    public:
+        // Window(/* args */);
+        // ~Window();
+        void setID(const int ID)  {
+            this->id = ID;
+        }
+
+        int getID(void) {
+            return this->id;
+        } 
+        
+        void setColor(GLfloat color[3])  {
+            this->color = color;
+        }
+
+        GLfloat* getColor(void)  {
+            return this->color;
+        }
+} window1, window2;
+
+// Window::myrender(/* args */)
+// {
+// }
+
+// Window::~myrender()
+// {
+// }
+
+
 void keyboard(unsigned char key, int x, int y)  {
     printf("pressed key '%c'\n", key);
     switch (key)
