@@ -28,8 +28,8 @@ class Window
             return this->id;
         } 
         
-        void setColor(GLfloat color[3])  {
-            this->color = color;
+        void setColor(const GLfloat color[3])  {
+            this->color = (GLfloat *) color;
         }
 
         GLfloat* getColor(void)  {
@@ -101,8 +101,8 @@ int main(int argc, char *argv[]) {
     window1.setID(win1);
     window2.setID(win2);
 
-    window1.setColor(RED);
-    window2.setColor(GREEN);
+    window1.setColor(COLOR_RED);
+    window2.setColor(COLOR_BLUE);
 
     glutKeyboardFunc(keyboard);
 
