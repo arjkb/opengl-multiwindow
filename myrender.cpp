@@ -1,5 +1,6 @@
 #include <glm/glm.hpp>
 #include <stdio.h>
+#include <iostream>
 #include "GL/glew.h"
 #include "GL/freeglut.h"
 
@@ -7,9 +8,60 @@ using namespace std;
 
 GLint win1, win2;
 
-void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
+const GLfloat COLOR_RED[] = {1.0, 0.0, 0.0};
+const GLfloat COLOR_GREEN[] = {0.0, 1.0, 0.0};
+const GLfloat COLOR_BLUE[] = {0.0, 0.0, 1.0};
+
+class Window
+{
+    private:
+        GLfloat *color;
+        int id;
+    public:
+        // Window(/* args */);
+        // ~Window();
+        void setID(const int ID)  {
+            this->id = ID;
+        }
+
+        int getID(void) {
+            return this->id;
+        } 
+        
+        void setColor(const GLfloat color[3])  {
+            this->color = (GLfloat *) color;
+        }
+
+        GLfloat* getColor(void)  {
+            return this->color;
+        }
+} window1, window2;
+
+// Window::myrender(/* args */)
+// {
+// }
+
+// Window::~myrender()
+// {
+// }
+
+
+void keyboard(unsigned char key, int x, int y)  {
+    printf("pressed key '%c'\n", key);
+    switch (key)
+    {
+        case 'x':   
+        case 'X':   printf("gui\n");
+                    window1.setColor(COLOR_GREEN);
+                    window2.setColor(COLOR_RED);
+                    break;
+        default:    break;
+    }
+    glutPostRedisplay();
+}
+
+void drawSquare(const GLfloat SIDE)    {
     glBegin(GL_POLYGON);
-        glColor3fv(COLOR);
         glVertex3f(-SIDE,SIDE,0);
         glVertex3f(-SIDE,-SIDE,0);
         glVertex3f(SIDE,-SIDE,0);
@@ -18,21 +70,26 @@ void drawSquare(const GLfloat SIDE, const GLfloat COLOR[])    {
 }
 
 void display(void)  {
-    const GLfloat RED[] = {1.0, 0.0, 0.0};
-    const GLfloat BLUE[] = {0.0, 0.0, 1.0};
-    
     printf(" current window = %d\n", glutGetWindow());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-    if(glutGetWindow() == win1) {
-        drawSquare(0.5, RED);
-    } else if(glutGetWindow() == win2)  {
-        drawSquare(0.5, BLUE);
+    
+    // iterate through window objects, and apply its properties
+    for(int window = 1; window <= 2; window++)  {   
+        glutSetWindow(window);
+        if(glutGetWindow() == window1.getID()) {
+            // glColor3fv(COLOR_RED);
+            printf("window1!\n");
+            glColor3fv(window1.getColor());
+            drawSquare(0.5);
+        } else if(glutGetWindow() == window2.getID())  {
+            printf("window2!\n");
+            glColor3fv(window2.getColor());
+            drawSquare(0.5);
+        }
+        glFlush();
+        glutSwapBuffers();
     }
-
-    glFlush();
-    glutSwapBuffers();
 }
 
 int main(int argc, char *argv[]) {
@@ -47,7 +104,20 @@ int main(int argc, char *argv[]) {
 
     glutInitWindowPosition(500, 50);
     win2 = glutCreateWindow("window 2");
+    window1.setID(win1);
+    window2.setID(win2);
+
+    window1.setColor(COLOR_RED);
+    window2.setColor(COLOR_BLUE);
+    printf("main\n");
+
     glutDisplayFunc(display);
+
+    
+
+    glutKeyboardFunc(keyboard);
+
+    // glColor3fv(COLOR_RED);
 
     printf(" win1 = %d, win2 = %d\n", win1, win2);
 
